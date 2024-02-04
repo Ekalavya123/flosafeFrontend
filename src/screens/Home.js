@@ -107,8 +107,8 @@ export default function Home() {
         <div className='m-3 border border-secondary text-center'style={{"position":"relative","margin":"auto",width:'90%',padding:'10px',paddingTop:'50px',left:'20px'}} >
             <Line   options={options} data={data} width='400%'  />
             <div className="topLeftNavLinks">
-                <button className={(psi?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn profile-btn ")}  aria-current="page" onClick={()=>{setPsi(1);setBar(0);}} >pressureBar</button>
-                <button className={(bar?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn profile-btn ")} onClick={()=>{setPsi(0);setBar(1);}} >pressurePsi</button>
+                <button className={(psi?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn profile-btn ")}  aria-current="page" onClick={()=>{setPsi(1);setBar(0);}} >pressurePsi</button>
+                <button className={(bar?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn profile-btn ")} onClick={()=>{setPsi(0);setBar(1);}} >pressureBar</button>
             </div>
             <div className="topRightNavLinks">
                 <button className="btn  border border-danger text-black  m-1 btn profile-btn"  aria-current="page" >StartTestReport</button>
