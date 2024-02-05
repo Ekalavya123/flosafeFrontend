@@ -31,7 +31,7 @@ export default  function About() {
         <div><Navbar /></div>
         <div className="wrapper ">
             <div className="logo ">
-                    <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt=""/>
+                    <img src={require('../websiteLogo.jpg')} alt=""/>
             </div>
             <div className='d-flex mt-3'>
               <div><label htmlFor="exampleInputEmail1" className="form-label m-2 mt-4 text-success">Name :</label></div>
