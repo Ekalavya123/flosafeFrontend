@@ -46,12 +46,12 @@
 
 
 .topRightNavLinks {
-  position: absolute;
+  position: relative;
   right: 5px;
   top: 10px;
 }
 .topLeftNavLinks {
-  position: absolute;
+  position: relative;
   left: 5px;
   top: 10px;
 }
