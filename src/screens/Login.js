@@ -30,6 +30,7 @@ export default function Login() {
           if(!json.success){
             localStorage.removeItem('token')
             if(json.data){
+              if(localStorage.getItem('tokenActive')) localStorage.removeItem('tokenActive')
               localStorage.setItem('token',json.data)
             }
             setLoading(0)
@@ -87,5 +88,3 @@ export default function Login() {
     </div>
   )
 }
-
-
