@@ -16,6 +16,19 @@ export default function Home() {
   const [togglePressure,setTogglePressure]=useState(""),[drainPressure,setDrainPressure]=useState("")
   let navigate=useNavigate();
   const getpastData=()=>{
+    if(localStorage.getItem(token)){
+      let token=localStorage.getItem('token');
+      fetch("https://flosafeanalyticsbackend.onrender.com/api/checkToken", {
+          method: 'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({authToken:token})
+      }).then(response => response.json()).then(json => {
+        if(!json.success){
+          localStorage.removeItem('token')
+          if(localStorage.getItem('tokenActive')) localStorage.removeItem('tokenActive')
+        }
+      })
+    }
     fetch("https://flosafeanalyticsbackend.onrender.com/api/getData", {
         method: 'POST',
         headers:{'Content-Type':'application/json'}
@@ -26,7 +39,7 @@ export default function Home() {
         setCurrentData(response2)
         setIncoming(response2.incoming),setDrain(response2.drain),setPump(response2.pump);
         setTogglePressure(response2.togglePressure),setDrainPressure(response2.drainPressure)
-        console.log(response2)
+        // console.log(response2)
       }
       else alert(json.message)
     })
