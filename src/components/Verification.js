@@ -42,7 +42,7 @@ export default function verification() {
             FlowsafeAnalytics
         </div>
         <p className='text-center m-4 text-success'>{message}</p>
-        <Link to="/Login" className="btn mt-3 fs-6 bg-success">Login Here</Link> 
+        {message=="Email verified successfully"?<Link to="/Login" className="btn mt-3 fs-6 bg-success">Login Here</Link>:<p className='text-center m-4 text-success'>Checking...</p> }
     </div>
   )
 }
