@@ -30,7 +30,7 @@ export default function Signup() {
           setLoading(0)
           alert(json.message)
         }
-        
+        if(localStorage.getItem('tokenActive')) localStorage.removeItem('tokenActive')
       })
     } catch (error) {
       setLoading(0)
