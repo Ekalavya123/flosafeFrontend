@@ -16,7 +16,7 @@ export default function Home() {
   const [togglePressure,setTogglePressure]=useState(""),[drainPressure,setDrainPressure]=useState("")
   let navigate=useNavigate();
   const getpastData=()=>{
-    if(localStorage.getItem(token)){
+    if(localStorage.getItem('token')){
       let token=localStorage.getItem('token');
       fetch("https://flosafeanalyticsbackend.onrender.com/api/checkToken", {
           method: 'POST',
