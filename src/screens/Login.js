@@ -59,7 +59,7 @@ export default function Login() {
     <div><Navbar /></div>
     <div className="wrapper ">
         <div className="logo">
-            <img src="https://i.ibb.co/883YwKr/Whats-App-Image-2023-04-04-at-21-30-15.jpg" alt=""/>
+            <img src={require('../websiteLogo.jpg')} alt=""/>
         </div>
         <div className="text-center m-4 name text-success">
             FlowsafeAnalytics
