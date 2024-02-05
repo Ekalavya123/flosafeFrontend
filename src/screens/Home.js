@@ -55,34 +55,20 @@ export default function Home() {
     pressurePsi.push(pastData[i].pressurePsi)
     labels.push(pastData[i].time)
   }
-  const options={
-    responsive:true,
+  const options = {
+    responsive: true,
+    maintainAspectRatio: true,
     scales: {
       x:{
-        beginAtZero:true,
+        // beginAtZero:true,
         title:{
           display:true,
           text:"time "
         }
-      },
-      y:{
-        beginAtZero:true,
-        title:{
-          display:true,
-          text:(psi?"pressurePsi":"pressureBar")
-        }
       }
     },
-    plugins:{
-      legend:{
-        position:"bottom",
-      },
-      title:{
-        display:true,text:"Graph",
-      },
-    },
-  };
-  
+    aspectRatio: 2
+  }
   const data={
     labels,
     datasets:[
@@ -104,12 +90,14 @@ export default function Home() {
         <div><Navbar /></div>
         {(!localStorage.getItem('token') || !localStorage.getItem('tokenActivate'))?gotoLogin():
         <>
-        <div className='m-3 border border-secondary text-center'style={{"position":"relative","margin":"auto",width:'90%',padding:'10px',left:'20px'}} >
-            <Line   options={options} data={data} width='400%'  />
-            <div className="topLeftNavLinks">
+        <div className='d-flex align-items-center justify-content-center'>
+        <div style={{ position: "relative", height: "50%", width: "90%" }} className=' m-3  border border-secondary text-center'>
+            <Line   options={options} data={data} />
+            <div className='m-1'>
                 <button className={(psi?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn profile-btn ")}  aria-current="page" onClick={()=>{setPsi(1);setBar(0);}} >pressurePsi</button>
                 <button className={(bar?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn profile-btn ")} onClick={()=>{setPsi(0);setBar(1);}} >pressureBar</button>
             </div>
+        </div>
         </div>
         {edit? <> 
         <div className='text-center' >
@@ -136,11 +124,11 @@ export default function Home() {
             <p className='border border-danger text-center m-1' type="text" aria-label="First name" class="form-control" >{currentData.drainPressure}</p>
         </div></>
         }
-        <div className='text-center' >
+        <div className=' d-flex align-items-center justify-content-center' >
           <button className={(edit?"btn bg-success":"").concat(" border border-danger text-black  m-2 btn profile-btn ") }  onClick={()=>{setEdit(!edit)}}>{(edit?"editON":"Edit")}</button>
           <button className= "border border-danger text-black  m-2 btn profile-btn " onClick={handleUpdate}>update</button>
         </div>
-        <div style={{right:0}}>
+        <div className='d-flex align-items-center justify-content-center'>
           <button className="btn  border border-danger text-black  m-3 mt-0 "  aria-current="page" >StartTestReport</button>
           <button className='btn  border border-danger text-black  m-3 mt-0' >ExportTestCycle</button>
         </div>
