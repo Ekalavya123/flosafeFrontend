@@ -104,15 +104,11 @@ export default function Home() {
         <div><Navbar /></div>
         {(!localStorage.getItem('token') || !localStorage.getItem('tokenActivate'))?gotoLogin():
         <>
-        <div className='m-3 border border-secondary text-center'style={{"position":"relative","margin":"auto",width:'90%',padding:'10px',paddingTop:'50px',left:'20px'}} >
+        <div className='m-3 border border-secondary text-center'style={{"position":"relative","margin":"auto",width:'90%',padding:'10px',left:'20px'}} >
             <Line   options={options} data={data} width='400%'  />
             <div className="topLeftNavLinks">
                 <button className={(psi?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn profile-btn ")}  aria-current="page" onClick={()=>{setPsi(1);setBar(0);}} >pressurePsi</button>
                 <button className={(bar?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn profile-btn ")} onClick={()=>{setPsi(0);setBar(1);}} >pressureBar</button>
-            </div>
-            <div className="topRightNavLinks">
-                <button className="btn  border border-danger text-black  m-1 btn profile-btn"  aria-current="page" >StartTestReport</button>
-                <button className='btn  border border-danger text-black  m-1 btn profile-btn' >ExportTestCycle</button>
             </div>
         </div>
         {edit? <> 
@@ -144,17 +140,13 @@ export default function Home() {
           <button className={(edit?"btn bg-success":"").concat(" border border-danger text-black  m-2 btn profile-btn ") }  onClick={()=>{setEdit(!edit)}}>{(edit?"editON":"Edit")}</button>
           <button className= "border border-danger text-black  m-2 btn profile-btn " onClick={handleUpdate}>update</button>
         </div>
+        <div style={{right:0}}>
+          <button className="btn  border border-danger text-black  m-3 mt-0 "  aria-current="page" >StartTestReport</button>
+          <button className='btn  border border-danger text-black  m-3 mt-0' >ExportTestCycle</button>
+        </div>
         </>
         }
         <div><Footer /></div>
     </div>
   )
 }
-
-
-
-
-
-
-
-
