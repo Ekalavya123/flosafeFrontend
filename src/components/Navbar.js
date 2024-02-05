@@ -19,46 +19,44 @@ export default function Navbar() {
         </svg>
   let options=['Sites','Site1','Site2'];
   return (
-    <div>
-      <nav className=" navbar-dark bg-success  ">
-              {
-                (!localStorage.getItem('token') || !localStorage.getItem('tokenActivate'))?
-                <div className="container-fluid">  
-                <div className="nav-item  ">
-                    <Link className="navbar-brand fs-1 fst-normal mr-5 " to="/Login" >Flowsafe Analytics</Link>
-                    <div style={{position:'absolute',right:0,top:0}}>
-                      <button className="btn  text-white mt-3 " onClick={()=>{navigate("/Login")}}>Login</button>
-                      <button className="btn  text-white mt-3 " onClick={()=>{navigate("/SignUp")}}>SignUp</button>
-                    </div>     
-                </div>
-                </div>
-                :
-                <div className="container-fluid">  
-                <div className="nav-item  ">
-                  <Link className="navbar-brand fs-1 fst-normal mr-5" to="/">Flowsafe Analytics</Link>
-                  <button className="btn  text-white m-1  " onClick={()=>{navigate("/")}}>Configuration</button>
-                  <button className="btn  text-white m-1 " onClick={()=>{navigate("/")}}>Reports</button>
-                  <select className='btn-success' onChange={(e)=>{setRequest(e.target.value)} } >
-                      {Array.from(Array(3),(e,i)=>{
-                      return (<option key={i+1} value={options[i]} >{options[i]}</option>)
-                      })}
-                  </select>
-                  <button className="btn text-white" onClick={handleOnclick}>Get</button>
-                  <div className="topRightNavLinks">
-                    <button className="btn  text-white  profile-btn"  aria-current="page" onClick={handleProfile}>{p}</button>
-                    <button className='btn  text-white logout-btn' onClick={handleLogout}>LogOut</button>
-                  </div>
-                </div>
-                </div>
-              }
+    <nav class="navbar navbar-expand-lg navbar-light bg-success">
+    <div class="container-fluid">
+      <Link class="navbar-brand m-3" to="/">FlowsafeAnalytics</Link>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {(localStorage.getItem('token') && localStorage.getItem('tokenActivate'))?
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <Link class="btn btn-outline-black mt-1" aria-current="page" to="">Configuration</Link>
+            </li>
+            <li class="nav-item">
+              <Link className="btn btn-outline-black mt-1" to="">Reports</Link>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle mt-1 text-black" style={{width:'50%',paddingLeft:'15px'}} to="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Sites
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" to="">Site1</a></li>
+                <li><a class="dropdown-item" to="">Site2</a></li>
+              </ul>
+            </li>
+          </ul>:""
+        }
+        {(localStorage.getItem('token') && localStorage.getItem('tokenActivate'))?
+          <div class="d-flex">
+            <Link class="btn btn-outline-white" to="/About">profile</Link>
+            <button class="btn btn-outline-white" onClick={handleLogout}>LogOut</button>
+          </div>:
+          <div class="d-flex">
+          <Link class="btn btn-outline-white" to="/Login">Login</Link>
+          <Link class="btn btn-outline-white" to="/SignUp">SignUp</Link>
+        </div>
+        }
+      </div>
+    </div>
     </nav>
-  </div>
   )
 }
-
-
-
-
-
-
-
