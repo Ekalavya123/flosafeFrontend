@@ -21,6 +21,7 @@ export default function verification() {
                         setMessage(json.message)
                     })
                     localStorage.setItem('tokenActivate',true)
+                    localStorage.removeItem('token')
                 }
                 else alert(response.message)
             })
@@ -41,9 +42,7 @@ export default function verification() {
             FlowsafeAnalytics
         </div>
         <p className='text-center m-4 text-success'>{message}</p>
-        <Link to="/" className="btn mt-3 fs-6 bg-success">Login Here</Link> 
+        <Link to="/Login" className="btn mt-3 fs-6 bg-success">Login Here</Link> 
     </div>
   )
 }
-
-
