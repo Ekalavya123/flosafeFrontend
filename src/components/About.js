@@ -41,9 +41,7 @@ export default  function About() {
               <div><label htmlFor="exampleInputEmail1" className="form-label m-2 mt-4 text-success">Email:</label></div>
               <div className="form-label mt-4">{data[1]}</div>
             </div>
-            
             <br/>
-            <Link to="/InfoUpdate" className="btn mt-3 fs-6 bg-success">Edit</Link>
         </div>
         <div><Footer /></div>
         </div>
