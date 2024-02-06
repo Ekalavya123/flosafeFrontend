@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+
 export default function Signup() {
   const [credentials,setCredentials] =useState({name:"",email:"",password:"",confirmPassword:""})
   const [loading,setLoading] =useState(0)
@@ -20,17 +21,11 @@ export default function Signup() {
             body:JSON.stringify({name:credentials.name,email:credentials.email,password:credentials.password})
       }).then(response => response.json()).then(json => {
         if(json.success){
-          setLoading(0)
           alert("Your Account is Successfully Created")
-          localStorage.removeItem('token')
           navigate('/login')
         }
-        else{
-          if(json.data) localStorage.setItem('token',json.data)
-          setLoading(0)
-          alert(json.message)
-        }
-        if(localStorage.getItem('tokenActive')) localStorage.removeItem('tokenActive')
+        else alert(json.message)
+        setLoading(0)
       })
     } catch (error) {
       setLoading(0)
