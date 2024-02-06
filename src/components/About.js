@@ -1,5 +1,4 @@
 import React,{useEffect, useState} from 'react'
-import { Link} from 'react-router-dom'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 
@@ -44,7 +43,6 @@ export default  function About() {
             <br/>
         </div>
         <div><Footer /></div>
-        </div>
-        
+        </div>   
     )
 }
