@@ -16,7 +16,7 @@ export default function Home() {
   const [togglePressure,setTogglePressure]=useState(""),[drainPressure,setDrainPressure]=useState("")
   let navigate=useNavigate();
   const getpastData=()=>{
-    if(localStorage.getItem('token')){
+    if(localStorage.getItem('toke')){
       let token=localStorage.getItem('token');
       fetch("https://flosafeanalyticsbackend.onrender.com/api/checkToken", {
           method: 'POST',
@@ -103,43 +103,50 @@ export default function Home() {
         <div><Navbar /></div>
         {(!localStorage.getItem('token') || !localStorage.getItem('tokenActivate'))?gotoLogin():
         <>
+        <div className='text-center'>
+            <button className={(psi?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn ")}  aria-current="page" onClick={()=>{setPsi(1);setBar(0);}} >pressurePsi</button>
+            <button className={(bar?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn ")} onClick={()=>{setPsi(0);setBar(1);}} >pressureBar</button>
+        </div>
         <div className='d-flex align-items-center justify-content-center'>
-        <div style={{ position: "relative", height: "50%", width: "90%" }} className=' m-3  border border-secondary text-center'>
+        <div style={{ position: "relative", height: "50%", width: "90%" }} className=' m-3 mt-0'>
             <Line   options={options} data={data} />
-            <div className='m-1'>
-                <button className={(psi?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn profile-btn ")}  aria-current="page" onClick={()=>{setPsi(1);setBar(0);}} >pressurePsi</button>
-                <button className={(bar?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn profile-btn ")} onClick={()=>{setPsi(0);setBar(1);}} >pressureBar</button>
-            </div>
         </div>
         </div>
+        
         {edit? <> 
         <div className='text-center' >
-            <button className={(Incoming?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn profile-btn ")} onClick={()=>{setIncoming(!Incoming)}}>{(Incoming?"Incoming ON":"Incoming OFF")}</button>
-            <button className={(Drain?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn profile-btn ")} onClick={()=>{setDrain(!Drain)}} >{(Drain?"Drain ON":"Drain OFF")}</button>
-            <button className={(Pump?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn profile-btn ")} onClick={()=>{setPump(!Pump)}}>{(Pump?"Pump ON":"Pump OFF")}</button>
+            <button className={(Incoming?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn  ")} onClick={()=>{setIncoming(!Incoming)}}>{(Incoming?"Incoming ON":"Incoming OFF")}</button>
+            <button className={(Drain?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn  ")} onClick={()=>{setDrain(!Drain)}} >{(Drain?"Drain ON":"Drain OFF")}</button>
+            <button className={(Pump?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn  ")} onClick={()=>{setPump(!Pump)}}>{(Pump?"Pump ON":"Pump OFF")}</button>
         </div>
-        <div class="input-group m-2 " style={{"width":"60%"}}>
-            <span class="input-group-text">Toggle Pressure</span>
-            <input className='border border-danger text-center m-1' placeholder={togglePressure} type="text" aria-label="First name" class="form-control" value={togglePressure}  onChange={(e)=>{setTogglePressure(e.target.value)}} />
-            <span class="input-group-text">Drain Pressure</span>
-            <input className='border border-danger text-center m-1' placeholder={drainPressure} type="text" aria-label="Last name" class="form-control" value={drainPressure}  onChange={(e)=>{setDrainPressure(e.target.value)}} />
-        </div></>:
+        <div className='d-flex align-items-center justify-content-center'>
+        <div class="input-group m-2 " style={{"width":"60%"  }}>
+            <p class="input-group-text">Toggle Pressure</p>
+            <input className='border border-danger text-center m-1' style={{height:'37px'}}  placeholder={togglePressure} type="text" aria-label="First name" class="form-control" value={togglePressure}  onChange={(e)=>{setTogglePressure(e.target.value)}} />
+            <p class="input-group-text ">Drain Pressure</p>
+            <input className='border border-danger text-center m-1' style={{height:'37px'}}  placeholder={drainPressure} type="text" aria-label="Last name" class="form-control" value={drainPressure}  onChange={(e)=>{setDrainPressure(e.target.value)}} />
+        </div>
+        </div>
+        </>:
         <> 
         <div className='text-center' >
-            <p className={(currentData.incoming?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn profile-btn ")} >{(currentData.incoming?"Incoming ON":"Incoming OFF")}</p>
-            <p className={(currentData.drain?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn profile-btn ")}  >{(currentData.drain?"Drain ON":"Drain OFF")}</p>
-            <p className={(currentData.pump?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn profile-btn ")} >{(currentData.pump?"Pump ON":"Pump OFF")}</p>
+            <p className={(currentData.incoming?" bg-success":"").concat(" border border-danger text-black  m-1 btn  ")} >{(currentData.incoming?"Incoming ON":"Incoming OFF")}</p>
+            <p className={(currentData.drain?" bg-success":"").concat(" border border-danger text-black  m-1 btn  ")}  >{(currentData.drain?"Drain ON":"Drain OFF")}</p>
+            <p className={(currentData.pump?" bg-success":"").concat(" border border-danger text-black  m-1 btn  ")} >{(currentData.pump?"Pump ON":"Pump OFF")}</p>
         </div>
-        <div class="input-group m-2 " style={{"width":"60%"}}>
+        <div className='d-flex align-items-center justify-content-center'>
+        <div class="input-group m-2  " style={{"width":"60%"}}>
             <p class="input-group-text">Toggle Pressure</p>
             <p className='border border-danger text-center m-1' type="text" aria-label="First name" class="form-control"  >{currentData.togglePressure}</p>
             <p class="input-group-text">Drain Pressure</p>
             <p className='border border-danger text-center m-1' type="text" aria-label="First name" class="form-control" >{currentData.drainPressure}</p>
-        </div></>
+        </div>
+        </div>
+        </>
         }
         <div className=' d-flex align-items-center justify-content-center' >
-          <button className={(edit?"btn bg-success":"").concat(" border border-danger text-black  m-2 btn profile-btn ") }  onClick={()=>{setEdit(!edit)}}>{(edit?"editON":"Edit")}</button>
-          <button className= "border border-danger text-black  m-2 btn profile-btn " onClick={handleUpdate}>update</button>
+          <button className={(edit?"bg-success":"").concat(" border border-danger text-black  m-2 btn  ") }  onClick={()=>{setEdit(!edit)}}>{(edit?"editON":"Edit")}</button>
+          <button className= "border border-danger text-black  m-2 btn  " onClick={handleUpdate}>update</button>
         </div>
         <div className='d-flex align-items-center justify-content-center'>
           <button className="btn  border border-danger text-black  m-3 mt-0 "  aria-current="page" >StartTestReport</button>
