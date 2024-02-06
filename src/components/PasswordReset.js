@@ -4,6 +4,7 @@ export default function PasswordReset() {
     const [credentials,setCredentials]=useState({password:"",confirmPassword:""})
     const [loading,setLoading] =useState(0)
     const param=useParams();
+    let navigate=useNavigate();
     const setPassword = async () => {
         if(credentials.password!=credentials.confirmPassword){alert("confirmPassword is not matching");return;}
         setLoading(1)
