@@ -59,7 +59,12 @@ export default function Home() {
     })
   }
   useEffect(()=>{
-    getpastData();
+    try {
+      getpastData();
+    } catch (error) {
+      alert("somthing went wrong try later")
+    }
+    
   },[])
   
   let pressurePsi=[],pressureBar=[],labels=[];
@@ -101,7 +106,7 @@ export default function Home() {
   return (
     <div>
         <div><Navbar /></div>
-        {(!localStorage.getItem('token') || !localStorage.getItem('tokenActivate'))?gotoLogin():
+        {(!localStorage.getItem('token'))?gotoLogin():
         <>
         <div className='text-center'>
             <button className={(psi?"btn bg-success":"").concat(" border border-danger text-black  m-1 btn ")}  aria-current="page" onClick={()=>{setPsi(1);setBar(0);}} >pressurePsi</button>
