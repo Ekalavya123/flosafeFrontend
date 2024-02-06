@@ -5,7 +5,6 @@ export default function Navbar() {
   const navigate= useNavigate();
   const handleLogout=()=>{
     localStorage.removeItem('token')
-    localStorage.removeItem('tokenActivate')
     navigate("/Login")
   }
   return (
@@ -16,7 +15,7 @@ export default function Navbar() {
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        {(localStorage.getItem('token') && localStorage.getItem('tokenActivate'))?
+        {(localStorage.getItem('token'))?
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <Link class="btn btn-outline-black mt-1" aria-current="page" to="">Configuration</Link>
@@ -35,7 +34,7 @@ export default function Navbar() {
             </li>
           </ul>:""
         }
-        {(localStorage.getItem('token') && localStorage.getItem('tokenActivate'))?
+        {(localStorage.getItem('token'))?
           <div class="d-flex">
             <Link class="btn btn-outline-white" to="/About">profile</Link>
             <button class="btn btn-outline-white" onClick={handleLogout}>LogOut</button>
