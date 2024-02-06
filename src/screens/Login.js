@@ -16,7 +16,6 @@ export default function Login() {
             headers:{'Content-Type':'application/json'},
               body:JSON.stringify({email:credentials.email})
         }).then(response => response.json()).then(json => {
-          if(json.success) localStorage.setItem('resetToken',json.data);
           setLoading(0);setForgot(0)
           alert(json.message);
         })
@@ -27,22 +26,13 @@ export default function Login() {
             headers:{'Content-Type':'application/json'},
               body:JSON.stringify({email:credentials.email,password:credentials.password})
         }).then(response => response.json()).then(json => {
-          if(!json.success){
-            localStorage.removeItem('token')
-            if(json.data){
-              if(localStorage.getItem('tokenActive')) localStorage.removeItem('tokenActive')
-              localStorage.setItem('token',json.data)
-            }
-            setLoading(0)
-            alert(json.message)
-          }
+          if(!json.success) alert(json.message)
           else{
             // localStorage.setItem('userEmail',credentials.email)
             localStorage.setItem('token',json.data)
-            localStorage.setItem('tokenActivate',true)
-            setLoading(0)
             navigate("/");
           }
+          setLoading(0)
         })
       }
       
