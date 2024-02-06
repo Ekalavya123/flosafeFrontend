@@ -1,14 +1,14 @@
 import React,{useEffect, useState} from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 export default function verification() {
     const [message,setMessage] =useState("")
-    let authToken=localStorage.getItem("token")
+    const param=useParams();
     try {
         const verify = async () => {
             await fetch("https://flosafeanalyticsbackend.onrender.com/api/getUserDetails", {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body:JSON.stringify({authToken:authToken})
+                body:JSON.stringify({authToken:param.token})
             }).then(async (res) => {
                 let response= await res.json()
                 //console.log("res in verify" ,response.data.email)
@@ -20,15 +20,13 @@ export default function verification() {
                     }).then(response => response.json()).then(json => {
                         setMessage(json.message)
                     })
-                    localStorage.setItem('tokenActivate',true)
-                    localStorage.removeItem('token')
                 }
                 else alert(response.message)
             })
         }
         useEffect(() => {
             verify();
-          }, [])
+          }, [param])
     } catch (error) {
         alert("something went wrong try again later")
     }
