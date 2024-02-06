@@ -6,7 +6,6 @@ import Login from './screens/Login';
 import About from './components/About';
 import Verification from './components/Verification'
 import PasswordReset from './components/PasswordReset'
-let token=localStorage.getItem('token'),resetToken=localStorage.getItem('resetToken')
 function App() {
   return (
     <Router>
@@ -16,8 +15,8 @@ function App() {
           <Route exact path="/SignUp" element={<Signup />}/>
           <Route exact path="/Login" element={<Login />}/>
           <Route exact path="/About" element={<About />}/>
-          <Route exact path={"/users/verify/"+token} element={<Verification />}/>
-          <Route exact path={"/users/reset/"+resetToken} element={<PasswordReset />}/>
+          <Route exact path={"/users/verify/:token"} element={<Verification />}/>
+          <Route exact path={"/users/reset/:token"} element={<PasswordReset />}/>
         </Routes>
       </div>
     </Router>
