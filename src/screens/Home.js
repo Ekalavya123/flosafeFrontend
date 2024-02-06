@@ -122,9 +122,9 @@ export default function Home() {
         <div className='d-flex align-items-center justify-content-center'>
         <div class="input-group m-2 " style={{"width":"60%"  }}>
             <p class="input-group-text">Toggle Pressure</p>
-            <input className='border border-danger text-center m-1' style={{height:'37px'}}  placeholder={togglePressure} type="text" aria-label="First name" class="form-control" value={togglePressure}  onChange={(e)=>{setTogglePressure(e.target.value)}} />
+            <input className='border border-danger text-center m-1' style={{height:'37.5px'}}  placeholder={togglePressure} type="text" aria-label="First name" class="form-control" value={togglePressure}  onChange={(e)=>{setTogglePressure(e.target.value)}} />
             <p class="input-group-text ">Drain Pressure</p>
-            <input className='border border-danger text-center m-1' style={{height:'37px'}}  placeholder={drainPressure} type="text" aria-label="Last name" class="form-control" value={drainPressure}  onChange={(e)=>{setDrainPressure(e.target.value)}} />
+            <input className='border border-danger text-center m-1' style={{height:'37.5px'}}  placeholder={drainPressure} type="text" aria-label="Last name" class="form-control" value={drainPressure}  onChange={(e)=>{setDrainPressure(e.target.value)}} />
         </div>
         </div>
         </>:
