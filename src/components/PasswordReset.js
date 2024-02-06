@@ -1,9 +1,9 @@
 import React,{useState} from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , useParams } from 'react-router-dom';
 export default function PasswordReset() {
     const [credentials,setCredentials]=useState({password:"",confirmPassword:""})
     const [loading,setLoading] =useState(0)
-    let authToken=localStorage.getItem("resetToken"),navigate=useNavigate();
+    const param=useParams();
     const setPassword = async () => {
         if(credentials.password!=credentials.confirmPassword){alert("confirmPassword is not matching");return;}
         setLoading(1)
@@ -11,7 +11,7 @@ export default function PasswordReset() {
             await fetch("https://flosafeanalyticsbackend.onrender.com/api/getUserDetails", {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body:JSON.stringify({authToken:authToken})}).then(async (res) => {
+            body:JSON.stringify({authToken:param.token})}).then(async (res) => {
             let response= await res.json()
             //console.log("res in rest" ,response.data.email)
             if(response.success){
@@ -20,13 +20,12 @@ export default function PasswordReset() {
                 headers:{'Content-Type':'application/json'},
                 body:JSON.stringify({email:response.data.email,password:credentials.password})
                 }).then(response => response.json()).then(json => {
-                    if(json.success) localStorage.removeItem('resetToken')
-                    setLoading(0);
+                    setLoading(0)
                     alert(json.message);
                     navigate('/Login')
                 }) 
             }
-            else {setLoading(0);alert(response.message);}
+            else {setLoading(0),alert(response.message);}
             })
             
         } catch (error) {
